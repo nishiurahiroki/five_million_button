@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ReactDom from 'react-dom'
 
-import FiveMillionButton from './component/FiveMillionButton.jsx'
+import FiveHundredMillionButton from './component/FiveHundredMillionButton.jsx'
 
 const App = () => {
   const [years, setYears] = useState(0)
@@ -12,7 +12,7 @@ const App = () => {
         あと{years}年
       </p>
       <p>
-        <FiveMillionButton label="100万円" onClick={fiveMillion => setYears(fiveMillion + years)} />
+        <FiveHundredMillionButton label="100万円" onClick={fiveHundredMillion => setYears(fiveHundredMillion + years)} />
       </p>
     </>
   )
