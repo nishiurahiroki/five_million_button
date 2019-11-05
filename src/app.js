@@ -1,7 +1,12 @@
 import React, {useState} from 'react'
 import ReactDom from 'react-dom'
+import { createStore } from 'react-redux'
+
+import rootReducer from './rootReducer' 
 
 import FiveHundredMillionButton from './component/FiveHundredMillionButton.jsx'
+
+const store = createStore(rootReducer)
 
 const App = () => {
   const [years, setYears] = useState(0)
