@@ -1,29 +1,37 @@
 import React, {useState} from 'react'
 import ReactDom from 'react-dom'
-import { createStore } from 'react-redux'
 
-import rootReducer from './rootReducer' 
+import { Provider, useSelector, useDispatch } from 'react-redux'
+import { createStore } from 'redux'
+
+import rootReducer from './rootReducer'
 
 import FiveHundredMillionButton from './component/FiveHundredMillionButton.jsx'
 
 const store = createStore(rootReducer)
 
 const App = () => {
-  const [years, setYears] = useState(0)
+  const year = useSelector(state => state.year)
+  const dispatch = useDispatch()
   // TODO 年、日、時間、分、秒に分けて出す
   return (
     <>
       <p>
-        あと{years}年
+        あと{year}年
       </p>
       <p>
-        <FiveHundredMillionButton label="100万円" onClick={fiveHundredMillion => setYears(fiveHundredMillion + years)} />
+        <FiveHundredMillionButton label="100万円" onClick={fiveHundredMillion => dispatch({
+          type : 'SET_YEAR',
+          year : fiveHundredMillion + year
+        })} />
       </p>
     </>
   )
 }
 
 ReactDom.render(
-  <App/>,
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('app')
 )
